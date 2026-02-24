@@ -132,10 +132,16 @@ function Theme ({dashboard, ownerId, dashboardId}: {dashboard: { name: string, o
             setBgColorPick(theme.bgColor)
             setFontPick(theme.font)
             await axios.patch(`/dashboard/${dashboardId}`, { themeId: theme.id })
-            await getTheDash()
+            await getTheDash();
           }}>
             <Listbox.ItemText>
-            navColor: <ColorSwatch value={theme.navColor}/> bgColor: <ColorSwatch value={theme.bgColor}/> font: <ColorSwatch value={theme.font}/>
+            <Group attached width="full" maxW="sm" grow>
+            {
+              Object.entries(theme).map(([key, value]) => (
+                ['navColor', 'bgColor', 'font'].includes(key) && <ColorSwatch key={key} value={String(value)} size='sm'/>
+              ))
+            }
+            </Group>
             </Listbox.ItemText>
             <Listbox.ItemIndicator />
           <Button size='2xs' variant='surface' colorPalette='red' onClick={() => {
