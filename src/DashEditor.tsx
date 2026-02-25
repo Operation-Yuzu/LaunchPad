@@ -194,6 +194,7 @@ function DashEditor() {
     <NavBar pages={["Home", "Hub"]} />
 
     <h2>Editing: {renderName()}</h2>
+    <Link to="/Dashboard">Done</Link>
 
     <Flex
       width="100%"
@@ -262,7 +263,7 @@ function DashEditor() {
       </section>
     )}
 
-    <Link to="/Dashboard">Done</Link>
+    
   </>
 
   );
