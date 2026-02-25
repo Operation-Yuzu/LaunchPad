@@ -130,10 +130,10 @@ function Theme ({dashboard, ownerId, dashboardId}: {dashboard: { name: string, o
     {
       <Listbox.Root collection={allThemesList} width="320px">
       <Listbox.Label fontSize='md' fontWeight='bold'>Select Theme</Listbox.Label>
-      <Listbox.Content  maxH='200px' overflowY='auto' w='130%'>
+      <Listbox.Content  maxH='300px' overflowY='auto' w='full' flexWrap='wrap'>
         {allThemesList.items.map((theme) => (
-          <Box border='1px solid' borderRadius='md' borderColor='grey'>
-          <Listbox.Item item={theme} key={theme.id} onClick={async () => {
+          <Box border='1px solid' key={theme.id} borderRadius='sm' borderColor='grey' p='4' mb='3' flex='0 0 180px'>
+          <Listbox.Item item={theme} onClick={async () => {
             setCurrTheme(theme)
             setNavColorPick(theme.navColor)
             setBgColorPick(theme.bgColor)
@@ -141,34 +141,34 @@ function Theme ({dashboard, ownerId, dashboardId}: {dashboard: { name: string, o
             await axios.patch(`/dashboard/${dashboardId}`, { themeId: theme.id })
             await getTheDash();
           }}>
-            <Listbox.ItemText>
-            <Group attached width="full" maxW="sm" grow>
-            {
+            <Listbox.ItemText w='full'>
+            <Box w='full'>
+              <Box display='flex' h='60px' w='250px' mb='5' borderRadius='sm' overflow='hidden'>
+              <Box flex='1' bg={theme.navColor} />
+              <Box flex='1' bg={theme.bgColor} />
+              <Box flex='1' bg={theme.font} />
+              </Box>
 
-              colors.map((key) => (
-                
-                
-                
-                <Box
-                key={key}
-                bg={theme[key]}
-                height="40px"
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                borderRadius="md">
-                <Text>{colorMap[key]}</Text>
-                </Box>
-                
-              ))
-            }
-            </Group>
+              <Box display='flex' w='full' justifyContent='space-between' gap='1'>
+                {colors.map((key) => (
+                  <Box key={key} flex='1' textAlign='center'>
+                  <Box textAlign='center'>
+                  <Text fontSize='xs' color='white' fontWeight='medium' mb='1'>{colorMap[key]}</Text>
+                  </Box>
+                  <Text fontSize='10px' color='white'>{theme[key]}</Text>
+                  </Box>
+                ))}
+              </Box>
+            </Box>
             </Listbox.ItemText>
             <Listbox.ItemIndicator />
-          <Button size='2xs' variant='ghost' colorPalette='red' onClick={() => {
+            </Listbox.Item>
+            
+          <Button size='2xs' variant='ghost' colorPalette='red' onClick={(e) => {
+            e.stopPropagation()
             deleteTheme({themeId: theme.id})
             }}>{<IoTrashSharp />}</Button>
-          </Listbox.Item>
+          
           </Box>
         ))}
       </Listbox.Content>
