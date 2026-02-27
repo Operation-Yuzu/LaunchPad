@@ -5,7 +5,7 @@ const github = express.Router();
 
 github.get('/changelog', async (req, res) => {
 // Test fallback for CI / fork PRs
-    if (process.env.NODE_ENV === 'test') {
+    if (!process.env.GH_AUTH_TOKEN) {
     return res.status(200).json([
       {
         number: 1,
