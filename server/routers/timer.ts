@@ -10,10 +10,10 @@ const authToken = process.env.TWILIO_AUTH_TOKEN;
 let client: Twilio | undefined;
 
 if (process.env.NODE_ENV !== "test") {
-  client = twilio(
-    accountSid,
-    authToken
-  );
+    if (!accountSid || !authToken) {
+      throw new Error("Missing Twilio environment variables");
+    }
+    client = twilio(accountSid, authToken);
 }
 
 const timerLookup: {[key: string]: NodeJS.Timeout} = {};
