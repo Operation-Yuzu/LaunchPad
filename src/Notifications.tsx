@@ -3,7 +3,7 @@ import { useState, useEffect} from 'react';
 import { Button, Switch, For, Text, Box, Flex, Spacer, Center} from "@chakra-ui/react"
 import { PinInput, Icon } from "@chakra-ui/react"
 import { IoCall, IoTrashSharp, IoPencilSharp } from "react-icons/io5";
-import { IoNotificationsOffOutline, IoNotifications  } from "react-icons/io5";
+import { IoCheckmark, IoCloseOutline } from "react-icons/io5";
 
 
 function Notifications ({ownerId} : {ownerId: number}) {
@@ -326,8 +326,8 @@ const deleteNumber = async () => {
         </Flex>
         <Text> Are you sure? </Text>
         <Box>
-        <Button onClick={() => deleteNumber()}>Yes</Button>
-        <Button onClick={() => setIsDeleting(false)}>No</Button>
+        <Button size="sm" variant="ghost" fontSize='18px' onClick={() => deleteNumber()}>{<IoCheckmark />}</Button>
+        <Button size="sm" variant="ghost" fontSize='18px' onClick={() => setIsDeleting(false)}>{<IoCloseOutline />}</Button>
         </Box>
         </Box>
       )}
