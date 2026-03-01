@@ -242,7 +242,7 @@ const deleteNumber = async () => {
         <Box  w='100%'>
         <Flex justify='space-between' align='center' mb='3' w='100%'>
           
-        <Text fontWeight="medium"> Notifications </Text>
+        <Text fontWeight="medium"> Enable Alerts </Text>
         <Spacer />
         <Switch.Root disabled colorPalette="blue" checked={checked}  onCheckedChange={(e) => updateNotifications(e.checked)}>
           <Switch.HiddenInput />
@@ -277,7 +277,7 @@ const deleteNumber = async () => {
         <Box  w='100%'>
         <Flex justify='space-between' align='center' mb='3' w='100%'>
           
-        <Text fontWeight="medium"> Notifications </Text>
+        <Text fontWeight="medium"> Enable Alerts </Text>
         <Spacer />
         <Switch.Root colorPalette="blue" checked={checked}  onCheckedChange={(e) => updateNotifications(e.checked)}>
           <Switch.HiddenInput />
