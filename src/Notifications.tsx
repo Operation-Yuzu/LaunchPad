@@ -1,15 +1,14 @@
 import axios from "axios";
 import { useState, useEffect} from 'react';
 import { Button, Switch, For, Text, Box, Flex, Spacer, Center, PinInput} from "@chakra-ui/react"
-import { IoCall, IoTrashSharp, IoPencilSharp } from "react-icons/io5";
-import { IoCheckmark, IoCloseOutline } from "react-icons/io5";
+import { IoCall, IoTrashSharp, IoPencilSharp, IoCheckmark, IoCloseOutline } from "react-icons/io5";
 
 
 function Notifications ({ownerId} : {ownerId: number}) {
 const [phoneNumber, setPhoneNumber] = useState('');
 const [hasNumber, setHasNumber] = useState(false)
 const [isAdding, setIsAdding] = useState(false)
-const [step, setStep] = useState('phone') // will tell what component to render
+const [step, setStep] = useState('phone')
 const [code, setCode] = useState('')
 const [checked, setChecked] = useState(false)
 const [verificationStatus, setVerificationStatus] = useState(false)
@@ -22,7 +21,6 @@ const [isDeleting, setIsDeleting] = useState(false)
 
   try {
     const number = await axios.get(`/notifications/${ownerId}`)
-    console.log(number, 'this is number')
     if(!number.data?.data){
       setHasNumber(false)
       setChecked(false)
@@ -92,9 +90,6 @@ const updateNumber = async () => {
 
   try {
     await axios.patch(`/notifications/${ownerId}`, {contactNumber: phoneNumber})
-
-
-    console.log('success')
   } catch (error) {
     console.error('something went wrong updated the phone number', error)
   }
@@ -105,8 +100,6 @@ const updateNotifications = async (checked: boolean) => {
   setChecked(checked)
   try {
     await axios.patch(`/notifications/notifications/${ownerId}`, {notifications: checked})
-
-    console.log('success')
   } catch (error) {
     console.error('something went wrong updated the phone number', error)
   }
