@@ -35,11 +35,6 @@ function LayoutGallery({onSelect, selectedLayoutId}: Props) {
   return (
     <>
       <h3>PUBLIC LAYOUTS</h3>
-
-      <Box mb={3} fontWeight="bold">
-        Select a layout to preview
-      </Box>
-
       <Grid  templateColumns="repeat(2, 1fr)" gap={3}>
        {layout.map((lay) => {
         const isSelected = lay.id === selectedLayoutId
