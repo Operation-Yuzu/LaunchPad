@@ -212,7 +212,7 @@ function DashEditor() {
             />
 
             <Box mt={4}>
-              <LayoutGallery onSelect={setSelectedLayoutId} />
+              <LayoutGallery onSelect={setSelectedLayoutId} selectedLayoutId={selectedLayoutId}/>
             </Box>
 
             {dashboard.layout && (

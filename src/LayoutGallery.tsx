@@ -10,7 +10,12 @@ type Layout = {
   layoutElements: [];
 };
 
-function LayoutGallery({onSelect,}: {onSelect: (layoutId: number) => void;}) {
+type Props = {
+  onSelect: (layoutId: number) => void;
+  selectedLayoutId: number;
+};
+
+function LayoutGallery({onSelect, selectedLayoutId}: Props) {
   const [layout, setLayout] = useState<Layout[]>([]);
 
   //when component is mounted fetch layouts
@@ -30,15 +35,32 @@ function LayoutGallery({onSelect,}: {onSelect: (layoutId: number) => void;}) {
   return (
     <>
       <h3>PUBLIC LAYOUTS</h3>
-      <Grid>
-       {layout.map((lay) => (
-         <div key={lay.id}>
-          <p>PREVIEW LAYOUT #{lay.id}</p>
-          <button onClick={() => onSelect(lay.id)}> SelectLayout </button>
-        </div>
 
+      <Box mb={3} fontWeight="bold">
+        Select a layout to preview
+      </Box>
 
-      ))}
+      <Grid gap={3}>
+       {layout.map((lay) => {
+        const isSelected = lay.id === selectedLayoutId
+
+        return(
+          <Box
+            key={lay.id}
+            p={3}
+            borderWidth="2px"
+            borderRadius="md"
+            cursor="pointer"
+            color="gray.800"
+            borderColor={isSelected ? "orange.400" : "gray.300"}
+            bg={isSelected ? "blue.50" : "black.800"}
+            _hover={{ borderColor: "orange.300" }}
+            onClick={() => onSelect(lay.id)}
+          >
+          <p><b>Layout #{lay.id}</b></p>
+          </Box>
+        )
+       })}
       </Grid>
 
     </>
