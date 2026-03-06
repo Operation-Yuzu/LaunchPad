@@ -164,7 +164,7 @@ dashboard.post('/', async (req, res) => {
             },
             navColor: "#111827",
             bgColor: "#ffffff",
-            font: "Inter",
+            font: "#ffffff",
           },
         },
 
