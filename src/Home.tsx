@@ -64,7 +64,7 @@ function Home () {
   return (
     <>
       {/* Navbar */}
-      <NavBar pages={["Hub", "Dashboard"]} navColor='#99450e'/>
+      <NavBar pages={["Hub", "Dashboard"]} navColor='#dba022'/>
 
       
 
@@ -74,7 +74,7 @@ function Home () {
           <Flex w="100%" justifyContent="center" align="center">
             <Image height="4rem" src={gridLogoURL}/>
             <Heading size="7xl">
-              Launchpad
+              LaunchPad
             </Heading>
           </Flex>
         </Container>
@@ -83,7 +83,7 @@ function Home () {
         <Flex justifyContent="center" gap="16">
           <ImageCarousel />
           <Container width="-moz-fit-content" margin="2" textAlign="center" p="3">
-            <Text fontSize="lg" mb="5"> Launchpad is the homepage you've always wanted! </Text>
+            <Text fontSize="lg" mb="5"> LaunchPad is the homepage you've always wanted! </Text>
             <Text fontSize="lg" mb="5"> Customize your dashboard's widgets and colors and watch your productivity take off. </Text>
           </Container>
           <Box background="gray.950" p="3" margin="2" width="-moz-fit-content" textAlign="center" w="250px">
@@ -97,10 +97,10 @@ function Home () {
           <Flex justifyContent="space-between" gap="16">
             <Container width="-moz-fit-content" margin="2" textAlign="center" p="3">
               <Text fontSize="lg" mb="5" textAlign="left">
-                Launchpad lets you build your digital home! Place and resize widgets, choose the colors that fit your mood - set up your dashboard the way you like! You can even have your dashboard change with the time of day.
+                LaunchPad lets you build your digital home! Place and resize widgets, choose the colors that fit your mood - set up your dashboard the way you like! You can even have your dashboard change with the time of day.
               </Text>
               <Text fontSize="lg" mb="5" textAlign="left">
-                View your calendar and email, and set pomodoro timers, all in one place. Launchpad gives you the tools to take control of your life.
+                View your calendar and email, and set pomodoro timers, all in one place. LaunchPad gives you the tools to take control of your life.
               </Text>
             </Container>
             {/* Concept: Pass in a changelog value that is taken in from somewhere else. Ideally something that is easy for us to update. */}
