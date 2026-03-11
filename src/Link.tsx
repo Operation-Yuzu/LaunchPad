@@ -11,13 +11,21 @@ function Link ({widgetId, settings}: {widgetId: number, settings: WidgetSettings
   const [newLink, setNewLink] = useState('');
   const [linkEditorOpen, setLinkEditorOpen] = useState(false);
 
-
-  const handleSubmitNewLink = (newLink: string | null) => {
-    console.log('submitting');
+  const refreshLink = async () => {
     try {
-      axios.patch(`/link/url/${widgetId}`, {
+      const response = await axios.get(`/link/${widgetId}`);
+      setLinkUrl(response.data);
+    } catch (error) {
+      console.error('Failed to refresh url:', error);
+    }
+  };
+
+  const handleSubmitNewLink = async (newLink: string | null) => {
+    try {
+      await axios.patch(`/link/${widgetId}`, {
         url: newLink
       });
+      refreshLink();
     } catch (error) {
       console.error('Failed to set link', error);
     }
@@ -50,6 +58,7 @@ function Link ({widgetId, settings}: {widgetId: number, settings: WidgetSettings
                 <Icon size="md" marginRight="0.5rem" cursor="pointer" onClick={(event) => {
                   event.stopPropagation();
                   handleSubmitNewLink(null);
+                  setNewLink('');
                 }}>
                   <LuUnlink/>
                 </Icon>

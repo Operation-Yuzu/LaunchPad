@@ -3,7 +3,51 @@ import { prisma } from '../database/prisma.js';
 
 const link = express.Router();
 
-link.patch('/url/:layoutElementId', async (req, res) => {
+link.get('/:layoutElementId', async (req, res) => {
+  // check auth
+  const userId = req.user?.id;
+
+  if (userId === undefined) {
+    res.sendStatus(401);
+    return;
+  }
+
+  const layoutElementId = parseInt(req.params.layoutElementId);
+
+  if (isNaN(layoutElementId)) {
+    // bad request
+    return res.sendStatus(400);
+  }
+
+  try {
+    const widgetSettings = await prisma.widgetSettings.findUnique({
+      where: {
+        layoutElementId
+      }
+    });
+
+    if (widgetSettings === null) {
+      return res.sendStatus(404);
+    }
+
+    const linkSettings = await prisma.linkSettings.findUnique({
+      where: {
+        widgetSettingsId: widgetSettings.id
+      }
+    });
+
+    if (linkSettings === null) {
+      return res.sendStatus(404);
+    } else {
+      res.status(200).send(linkSettings.url);
+    }
+  } catch (error) {
+    console.error('Failed to GET link url:', error);
+    res.sendStatus(500);
+  }
+});
+
+link.patch('/:layoutElementId', async (req, res) => {
   // check auth
   const userId = req.user?.id;
 
