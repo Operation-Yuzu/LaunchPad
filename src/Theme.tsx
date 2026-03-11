@@ -132,11 +132,11 @@ function Theme ({dashboard, ownerId, dashboardId}: {dashboard: { name: string, o
           }}>
             <Listbox.ItemText w='full'>
             <Box w='full'>
-              <Box display='flex' h='60px' w='250px' mb='5' borderRadius='xs' >
-              <Box flex='1' bg={theme.navColor}  shadow='lg'/>
-              <Box flex='1' bg={theme.bgColor}  shadow='lg'/>
-              <Box flex='1' bg={theme.font} shadow='lg'/>
-              </Box>
+            <Box display='flex' h='60px' w='250px' mb='5' borderRadius='xs' overflow='visible'>
+              <Box flex='1' bg={theme.navColor} style={{ filter: `drop-shadow(0 0 12px ${theme.navColor})` }} />
+              <Box flex='1' bg={theme.bgColor} style={{ filter: `drop-shadow(0 0 12px ${theme.bgColor})` }} />
+              <Box flex='1' bg={theme.font} style={{ filter: `drop-shadow(0 0 12px ${theme.font})` }} />
+            </Box>
 
               <Box display='flex' w='full' justifyContent='space-between' gap='1'>
                 {colors.map((key) => (
