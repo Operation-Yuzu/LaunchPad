@@ -101,7 +101,6 @@ dashboard.get('/:id', async (req, res) => {
           include : {
             layoutElements : {
               include : {
-                widget: true,
                 settings: {
                   include: {
                     calendar: true,
@@ -268,9 +267,7 @@ dashboard.post('/:dashboardId/layout/:layoutId', async (req, res) => {
     const sourceLayout = await prisma.layout.findUnique({
       where: { id: layoutId },
       include: {
-        layoutElements: {
-          include: { widget: true }
-        }
+        layoutElements: true
       }
     });
 
@@ -305,10 +302,7 @@ dashboard.post('/:dashboardId/layout/:layoutId', async (req, res) => {
       include : {
         layout: {
           include : {
-            layoutElements : {
-              include : { widget: true }
-
-            }
+            layoutElements : true
           }
         }
       }
