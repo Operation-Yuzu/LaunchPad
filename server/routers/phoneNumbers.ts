@@ -1,12 +1,8 @@
 import express from 'express';
 import { prisma } from '../database/prisma.js';
 import "dotenv/config";
-<<<<<<< HEAD
 import twilio, { Twilio } from 'twilio'
 import { use } from 'passport';
-=======
-import twilio from 'twilio'
->>>>>>> f74f2a9faeb4684630262fb010903e407f9bf9aa
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 let client: Twilio | undefined;
