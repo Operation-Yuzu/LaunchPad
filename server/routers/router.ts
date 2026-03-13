@@ -5,7 +5,6 @@ import express from 'express';
 
 import theme from './theme.js';
 import layout from './layout.js';
-import widget from './widget.js';
 import user from './user.js';
 import calendar from './calendar.js';
 import email from './email.js';
@@ -24,7 +23,6 @@ router.use('/dashboard', dashboard);
 router.use('/theme', theme);
 router.use('/calendar', calendar);
 router.use('/layout', layout);
-router.use('/widget', widget);
 router.use('/user', user);
 router.use('/email', email);
 router.use('/timer', timer);

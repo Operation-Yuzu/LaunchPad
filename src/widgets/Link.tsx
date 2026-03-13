@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Button, Container, Flex, Heading, HStack, Icon, Input, Link, LinkOverlay, Popover, Portal } from '@chakra-ui/react';
 import { LuExternalLink, LuLink, LuPencil, LuUnlink } from 'react-icons/lu';
 
-import type { WidgetSettings } from '../types/LayoutTypes.ts';
+import type { WidgetSettings } from '../../types/LayoutTypes.ts';
 
 // can't conflict with Chakra Link...
 function LinkWidget ({widgetId, settings}: {widgetId: number, settings: WidgetSettings | null}) {

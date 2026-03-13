@@ -6,10 +6,10 @@ import { AbsoluteCenter, Button, Container, Flex, For, Heading, HStack, Icon, Li
 import { LuCalendarDays } from 'react-icons/lu';
 
 
-import type { AllDayTime, PartDayTime, Event, CalendarObject } from '../types/Calendar.ts';
-import type { WidgetSettings } from '../types/LayoutTypes.ts';
-import { AuthStatus } from '../types/WidgetStatus.ts';
-import { UserContext } from './UserContext';
+import type { AllDayTime, PartDayTime, Event, CalendarObject } from '../../types/Calendar.ts';
+import type { WidgetSettings } from '../../types/LayoutTypes.ts';
+import { AuthStatus } from '../../types/WidgetStatus.ts';
+import { UserContext } from './../UserContext';
 
 function Calendar({widgetId, settings}: {widgetId: number, settings: WidgetSettings | null}) {
   const { user } = useContext(UserContext);
