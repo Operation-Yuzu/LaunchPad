@@ -15,12 +15,14 @@ async function main() {
     }
   });
 
-  await prisma.widget.createMany({
-    data: [
-      { name: 'Calendar' },
-      { name: 'Email' }
-    ]
-  });
+  // await prisma.widget.createMany({
+  //   data: [
+  //     { name: 'Calendar' },
+  //     { name: 'Email' }
+  //   ]
+  // });
+
+
 
   await prisma.layout.createMany({
     data: [
