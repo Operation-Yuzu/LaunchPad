@@ -143,6 +143,18 @@ dashboard.post('/', async (req, res) => {
   const { ownerId, name } = req.body;
 
   try {
+      //Load layout id = 1 as default since seed create layout.
+      const defaultLayout = await prisma.layout.findUnique({
+      where: { id: 1 },
+      include: {
+        layoutElements: true
+      }
+    });
+    console.log(defaultLayout)
+
+    if (!defaultLayout) {
+      return res.status(500).send("Default layout missing");
+    }
     // auth would go here
 
     if (!ownerId) {
@@ -168,14 +180,9 @@ dashboard.post('/', async (req, res) => {
           },
         },
 
-        layout: {
-          create: {
-            owner: {
-              connect: { id: ownerId },
-            },
-            gridSize: "12x12",
-          },
-        },
+        layoutId: newLayout.id
+
+
       },
       include: {
         theme: true,
