@@ -4,23 +4,11 @@ import axios from 'axios';
 const github = express.Router();
 
 github.get('/changelog', async (req, res) => {
-  console.log("CHANGELOG ROUTE HIT");
-// Test fallback for CI / fork PRs
-    if (!process.env.GH_AUTH_TOKEN) {
-    return res.status(200).json([
-      {
-        number: 1,
-        merged: true,
-        mergedAt: new Date().toISOString(),
-        title: 'Mock PR from test environment'
-      }
-    ]);
-  }
   // this is for the front page, so it doesn't have to be authenticated
 
   try {
     // tested in Postman
-    const queryString = '{ repository(owner:"Operation-Yuzu", name:"Launchpad") { pullRequests(last: 10) { edges { node { number merged mergedAt title} } } } }';
+    const queryString = '{ repository(owner:"eachampagne", name:"Launchpad") { pullRequests(last: 10) { edges { node { number merged mergedAt title} } } } }';
 
     const changelogData = await axios.post('https://api.github.com/graphql', {
       query: queryString

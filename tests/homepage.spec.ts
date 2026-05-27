@@ -1,17 +1,13 @@
 import { test, expect } from '@playwright/test';
 
 test('has GitHub changelog', async ({ page }) => {
-  await page.route('**/*/github/changelog', route => route.fulfill({
-    status: 200,
-    json: [
-      { id: 1, title: 'Fix bug', merged: true },
-      { id: 2, title: 'Add feature', merged: true },
-    ]
-  }));
+  const responsePromise = page.waitForResponse('**/*/github/changelog');
 
   await page.goto('http://localhost:8000');
+  await responsePromise;
 
   const changelogEntryCount = await page.getByTestId("changelog-entry").count();
 
-  expect(changelogEntryCount).toBeGreaterThan(0);
+  expect(changelogEntryCount).toBeGreaterThan(0); // can't assert that it's exactly 10 because server filters out non-merged PRs
+  // note that this doesn't account for the repository simply not having any PRs (such as when changing to the fork, or if somehow there are 10 open PRs)
 });
