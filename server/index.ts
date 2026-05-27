@@ -29,7 +29,7 @@ app.use(express.static(join(__dirname, '..', '..','dist'))); // evidently this i
 // * AUTH 
 
 app.use(session({
-  secret: process.env['secret']!, //  ! [variable]! means that it is not checking for null. Be careful!
+  secret: process.env['EXPRESS_SESSION_SECRET']!, //  ! [variable]! means that it is not checking for null. Be careful!
   resave: true,
   saveUninitialized: false,
   store: new PrismaSessionStore(prisma, {
